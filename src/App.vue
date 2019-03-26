@@ -177,7 +177,6 @@
                 var menuIcon = menuItems[0].split('/')[1];
                 var subMenuName = menuItems[1].split('/')[0];
                 var subMenuIcon = menuItems[1].split('/')[1];
-                var item = menuName + '-' + subMenuName;
                 this.breadcrumbItems = this.breadcrumbItems.slice(0, 1);
                 this.breadcrumbItems.push({
                     name: menuName,
