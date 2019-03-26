@@ -1,0 +1,27 @@
+/*怪异盒子*/
+.warpper{
+	width: 100%;
+	box-sizing:border-box;
+	clear:both;
+}
+/*清除浮动*/
+.warpper::after{
+	content: "";
+	display: block;
+	clear: both;
+}
+/*摇晃动画*/
+.wobble:hover{
+	cursor: pointer;
+	animation: wobbles 1s 0s linear infinite;
+}
+
+@Keyframes wobbles{
+	0%{
+		transform:rotate(6deg);
+	}50%{
+		transform:rotate(-6deg);
+	}100%{
+		transform:rotate(6deg);
+	}
+}
