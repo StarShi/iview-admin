@@ -1,4 +1,5 @@
 # shixin-iview-admin
+![](https://i.imgur.com/WOO0Te4.png)
 
 ## Project setup
 ```
