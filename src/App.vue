@@ -3,8 +3,8 @@
         <Sider ref="menuSide" hide-trigger collapsible :collapsed-width="collapsedWidth" v-model="isCollapsed"
                :width="showWidth" :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto',zIndex:9999}"
                class="menu-side-scoller">
-            <div class="admin-title">
-                <p v-show="!isCollapsed">后台管理</p>
+            <div class="admin-title" @click="adminTitleClick">
+                <span v-show="!isCollapsed">后台管理</span>
                 <img v-show="isCollapsed" src="@/assets/images/logo.png" alt="">
             </div>
             <Menu :theme="theme" accordion width="auto" :class="menuitemClasses" @on-select="menuSelect">
@@ -177,6 +177,7 @@
                 var menuIcon = menuItems[0].split('/')[1];
                 var subMenuName = menuItems[1].split('/')[0];
                 var subMenuIcon = menuItems[1].split('/')[1];
+                var item = menuName + '-' + subMenuName;
                 this.breadcrumbItems = this.breadcrumbItems.slice(0, 1);
                 this.breadcrumbItems.push({
                     name: menuName,
@@ -188,12 +189,18 @@
                 });
             },
             breadcrumbClick(ev){//点击首页时
-                var ev = ev || window.event;
                 var target = ev.target || ev.srcElement;
                 if(target.innerText.indexOf('首页') !== -1){
                     this.breadcrumbItems = this.breadcrumbItems.slice(0, 1);
                 }
 
+            },
+            adminTitleClick(ev){
+                var target = ev.target || ev.srcElement;
+                this.$router.push({
+                    name:'AdminHome'
+                });
+                this.breadcrumbItems = this.breadcrumbItems.slice(0, 1);
             }
 
         }
@@ -216,7 +223,12 @@
     }
 
     /*导航展开图标样式*/
-    .admin-title p {
+    .admin-title{
+        text-align: center;
+    }
+    .admin-title span {
+        display: inline-block;
+        cursor: pointer;
         font-size: 30px;
         font-weight: 800;
         letter-spacing: 1px;
@@ -226,6 +238,7 @@
     }
 
     .admin-title img {
+        cursor: pointer;
         width: 100%;
         padding: 0 10px;
     }
